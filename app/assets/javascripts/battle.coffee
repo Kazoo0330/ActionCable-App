@@ -1,4 +1,4 @@
-playtable = true
+playable = true
 
 $ ->
   event = `(window.ontouchstart === undefined)? 'click' : 'touchstart'`

@@ -23,7 +23,6 @@ App.battle = App.cable.subscriptions.create "BattleChannel",
   disconnected: ->
 
   received: (data) ->
-    console.log data
     actions[data.action](data, this)
 
   attack: (position) ->
@@ -90,6 +89,7 @@ actions['dequeue'] = (data, that)->
 
 actions['attack'] = (data)->
   attack_point = $('#ink-' + data.ink_type).clone()
+  console.log attack_point
   attack_point.attr('id', '')
   attack_point.css('position', 'absolute')
   attack_point.css('top', data.position.y - 250)
