@@ -21,6 +21,7 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'haml-rails'
 gem 'slim-rails'
+gem 'redis'
 gem 'redis-rails'
 gem 'erb2haml'
 

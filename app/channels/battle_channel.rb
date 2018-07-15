@@ -2,7 +2,7 @@ class BattleChannel < ApplicationCable::Channel
   def subscribed
     # binding.pry
     stream_from "player_#{uuid}"
-    # stream_from "battle_channel"
+    stream_from "battle_channel"
   end
 
   def unsubscribed
