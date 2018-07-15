@@ -1,7 +1,8 @@
 class BattleChannel < ApplicationCable::Channel
   def subscribed
-    # stream_from "player_#{uuid}"
-    stream_from "battle_channel"
+    # binding.pry
+    stream_from "player_#{uuid}"
+    # stream_from "battle_channel"
   end
 
   def unsubscribed
