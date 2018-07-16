@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'star/index'
   root 'battle#index'
   post 'result', to: 'battle#result'
 
