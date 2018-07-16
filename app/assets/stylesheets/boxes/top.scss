@@ -1,0 +1,98 @@
+// Place all the styles related to the top controller here.
+// They will automatically be included in application.css.
+$boxSize: 30px;
+$boxCount: 5;
+$duplicateCount: 15;
+
+body {
+  background: #000;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#ui {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  perspective: 700px;
+  
+  .box {
+    transform-style: preserve-3d;
+    animation: rotate 20000ms linear infinite;
+    
+    &_list {
+      transform-style: preserve-3d;
+      list-style-type: none;
+      
+      @for $i from 1 through $duplicateCount {
+        &:nth-child(#{$i}) {
+          transform: translateY(($boxSize + 10) * ($i - 1) - $boxSize * $duplicateCount / 2) rotateY(#{$i * 22}deg);
+        }
+      }
+      &_item {
+        position: absolute;
+        transform-style: preserve-3d;
+        
+        @for $i from 1 through $boxCount {
+          &:nth-child(#{$i}) {
+            transform: translateX(($boxSize + 10) * ($i + 1)) rotateX(#{$i * 15}deg);
+            
+            .wall {
+              background: rgba(random(255), random(255), random(255), 0.4);
+            }
+          }
+        }
+        .wall_wrapper {
+          animation: wall 10000ms ease-in-out infinite alternate;
+          transform-style: preserve-3d;
+        }
+        .wall {
+          position: absolute;
+          width: $boxSize;
+          height: $boxSize;
+          box-sizing: border-box;
+          border-radius: 25%;
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          transform-style: preserve-3d;
+          
+          &:nth-child(1) {
+            transform: translateZ($boxSize / 1.7);
+          }
+          &:nth-child(2) {
+            transform: translateY($boxSize / 1.7) rotateX(270deg);
+          }
+          &:nth-child(3) {
+            transform: translateX($boxSize / 1.7) rotateY(-270deg);
+          }
+          &:nth-child(4) {
+            transform: translateX(-$boxSize / 1.7) rotateY(-90deg);
+          }
+          &:nth-child(5) {
+            transform: translateY(-$boxSize / 1.7) rotateX(90deg);
+          }
+          &:nth-child(6) {
+            transform: translateZ(-$boxSize / 1.7) rotateX(180deg);
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(-360deg * 5);
+  }
+}
+
+@keyframes wall {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg) translate3d(0px, 0px, 0px);
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(-360deg * 2) translate3d(-$boxSize * 10, -$boxSize * 10, -$boxSize * 10);
+  }
+}

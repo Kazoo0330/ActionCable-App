@@ -11,7 +11,11 @@
 
   <body>
     <header>
-      <button type="button"><%# link_to 'Chat Room', chat_room_path %></button>
+      <ul>
+        <li>
+          <button type="button"><%= link_to 'Battle', root_path %></button>
+        </li>
+      </ul>
     </header>
     <%= yield %>
   </body>
